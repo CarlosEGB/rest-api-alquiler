@@ -15,7 +15,7 @@ import java.util.List;
 @ToString
 @Entity
 @Table(name = "persona", uniqueConstraints = @UniqueConstraint(name = "UK_dni", columnNames = {"dni"}))
-public class EntityPersona {
+public class Persona {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -34,11 +34,11 @@ public class EntityPersona {
     @Column(nullable = true)
     private int telefono;
 
-    @OneToMany(targetEntity = EntityAlquiler.class,
+    @OneToMany(targetEntity = Alquiler.class,
             cascade = CascadeType.ALL)
     @JoinColumn(name = "id_persona",
             referencedColumnName = "id_persona",
             foreignKey = @ForeignKey(name = "FK_alquiler_persona"),
             nullable = false)
-    private List<EntityAlquiler> entityAlquilers;
+    private List<Alquiler> alquileres;
 }

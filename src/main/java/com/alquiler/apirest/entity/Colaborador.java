@@ -15,7 +15,7 @@ import java.util.List;
 @ToString
 @Entity
 @Table(name = "colaborador")
-public class EntityColaborador {
+public class Colaborador {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -27,6 +27,6 @@ public class EntityColaborador {
 
     @ManyToMany(fetch = FetchType.LAZY,
             cascade = CascadeType.ALL,
-            mappedBy = "entityColaboradors")
-    private List<EntityJuego> entityJuegos;
+            mappedBy = "colaboradores")
+    private List<Juego> juegos;
 }

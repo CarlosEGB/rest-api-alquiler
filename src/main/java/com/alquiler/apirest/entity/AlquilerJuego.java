@@ -14,7 +14,7 @@ import java.util.Date;
 @ToString
 @Entity
 @Table(name = "alquiler_juego")
-public class EntityAlquilerJuego {
+public class AlquilerJuego {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

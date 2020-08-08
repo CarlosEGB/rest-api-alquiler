@@ -15,7 +15,7 @@ import java.util.List;
 @ToString
 @Entity
 @Table(name = "alquiler")
-public class EntityAlquiler {
+public class Alquiler {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -29,11 +29,11 @@ public class EntityAlquiler {
     @Column(name = "fecha_incial")
     private Date fechaInicial;
 
-    @OneToMany(targetEntity = EntityAlquilerJuego.class,
+    @OneToMany(targetEntity = AlquilerJuego.class,
             cascade = CascadeType.ALL)
     @JoinColumn(name = "id_alquiler",
             referencedColumnName = "id_alquiler",
             foreignKey = @ForeignKey(name = "FK_alqui_juego_alqui"),
             nullable = false)
-    private List<EntityAlquilerJuego> entityAlquilerJuegos;
+    private List<AlquilerJuego> alquilerJuegos;
 }

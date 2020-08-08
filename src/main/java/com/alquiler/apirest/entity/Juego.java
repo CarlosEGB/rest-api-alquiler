@@ -15,7 +15,7 @@ import java.util.List;
 @ToString
 @Entity
 @Table(name = "juego")
-public class EntityJuego {
+public class Juego {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -34,13 +34,13 @@ public class EntityJuego {
     @Column(nullable = true)
     private int Stock;
 
-    @OneToMany(targetEntity = EntityAlquilerJuego.class,
+    @OneToMany(targetEntity = AlquilerJuego.class,
             cascade = CascadeType.ALL)
     @JoinColumn(name = "id_juego",
             referencedColumnName = "id_juego",
             foreignKey = @ForeignKey(name = "FK_alqui_juego_juego"),
             nullable = false)
-    private List<EntityAlquilerJuego> entityAlquilerJuegos;
+    private List<AlquilerJuego> alquilerJuegos;
 
     @ManyToMany(fetch = FetchType.LAZY,
             cascade = CascadeType.ALL)
@@ -51,7 +51,7 @@ public class EntityJuego {
             inverseJoinColumns = {@JoinColumn(name = "id_colaborador",
                     foreignKey = @ForeignKey(name = "FK_colabora_juego_colabora"),
                     nullable = false)})
-    private List<EntityColaborador> entityColaboradors;
+    private List<Colaborador> colaboradores;
 
     @ManyToMany(fetch = FetchType.LAZY,
             cascade = CascadeType.ALL)
@@ -62,7 +62,7 @@ public class EntityJuego {
             inverseJoinColumns = {@JoinColumn(name = "id_protagonista",
                     foreignKey = @ForeignKey(name = "FK_protago_juego_protagonista"),
                     nullable = false)})
-    private List<EntityProtagonista> entityProtagonistas;
+    private List<Protagonista> protagonistas;
 
     @ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     @JoinTable(name = "plataforma_juego",
@@ -72,5 +72,5 @@ public class EntityJuego {
             inverseJoinColumns = {@JoinColumn(name = "id_plataforma",
                     foreignKey = @ForeignKey(name = "FK_platf_juego_plataforma"),
                     nullable = false)})
-    private List<EntityPlataforma> entityPlataformas;
+    private List<Plataforma> plataformas;
 }

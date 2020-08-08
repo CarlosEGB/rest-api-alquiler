@@ -14,7 +14,7 @@ import java.util.List;
 @ToString
 @Entity
 @Table(name = "tipo")
-public class EntityTipo {
+public class Tipo {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -24,11 +24,11 @@ public class EntityTipo {
     @Column(length = 50)
     private String nombre;
 
-    @OneToMany(targetEntity = EntityPersona.class,
+    @OneToMany(targetEntity = Persona.class,
             cascade = CascadeType.ALL)
     @JoinColumn(name = "id_tipo",
             referencedColumnName = "id_tipo",
             foreignKey = @ForeignKey(name = "FK_colaborador_tipo"),
             nullable = false)
-    private List<EntityColaborador> entityColaboradors;
+    private List<Colaborador> colaboradores;
 }
