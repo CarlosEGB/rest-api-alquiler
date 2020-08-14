@@ -1,17 +1,18 @@
 package com.alquiler.apirest.entity;
 
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import lombok.Getter;
+import lombok.Setter;
 import lombok.ToString;
 
 import javax.persistence.*;
 import java.util.Date;
-import java.util.List;
+import java.util.HashSet;
+import java.util.Set;
 
-@Data
-@AllArgsConstructor
-@NoArgsConstructor
+@Getter
+@Setter
 @ToString
 @Entity
 @Table(name = "juego")
@@ -25,6 +26,7 @@ public class Juego {
     @Column(length = 50)
     private String nombre;
 
+    @JsonFormat(pattern = "yyy-MM-dd", shape = JsonFormat.Shape.STRING)
     @Temporal(TemporalType.DATE)
     private Date lanzamiento;
 
@@ -32,7 +34,7 @@ public class Juego {
     private int precio;
 
     @Column(nullable = true)
-    private int Stock;
+    private int stock;
 
     @OneToMany(targetEntity = AlquilerJuego.class,
             cascade = CascadeType.ALL)
@@ -40,7 +42,7 @@ public class Juego {
             referencedColumnName = "id_juego",
             foreignKey = @ForeignKey(name = "FK_alqui_juego_juego"),
             nullable = false)
-    private List<AlquilerJuego> alquilerJuegos;
+    private Set<AlquilerJuego> alquilerJuegos = new HashSet<>();
 
     @ManyToMany(fetch = FetchType.LAZY,
             cascade = CascadeType.ALL)
@@ -51,7 +53,8 @@ public class Juego {
             inverseJoinColumns = {@JoinColumn(name = "id_colaborador",
                     foreignKey = @ForeignKey(name = "FK_colabora_juego_colabora"),
                     nullable = false)})
-    private List<Colaborador> colaboradores;
+    @JsonIgnoreProperties("juegos")
+    private Set<Colaborador> colaboradores = new HashSet<>();
 
     @ManyToMany(fetch = FetchType.LAZY,
             cascade = CascadeType.ALL)
@@ -62,9 +65,10 @@ public class Juego {
             inverseJoinColumns = {@JoinColumn(name = "id_protagonista",
                     foreignKey = @ForeignKey(name = "FK_protago_juego_protagonista"),
                     nullable = false)})
-    private List<Protagonista> protagonistas;
+    @JsonIgnoreProperties("juegos")
+    private Set<Protagonista> protagonistas = new HashSet<>();
 
-    @ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @ManyToMany(targetEntity = Plataforma.class, fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     @JoinTable(name = "plataforma_juego",
             joinColumns = {@JoinColumn(name = "id_juego",
                     foreignKey = @ForeignKey(name = "FK_platf_juego_juego"),
@@ -72,5 +76,16 @@ public class Juego {
             inverseJoinColumns = {@JoinColumn(name = "id_plataforma",
                     foreignKey = @ForeignKey(name = "FK_platf_juego_plataforma"),
                     nullable = false)})
-    private List<Plataforma> plataformas;
+    @JsonIgnoreProperties("juegos")
+    private Set<Plataforma> plataformas = new HashSet<>();
+
+    public Juego() {
+    }
+
+    public Juego(String nombre, Date lanzamiento, int precio, int stock) {
+        this.nombre = nombre;
+        this.lanzamiento = lanzamiento;
+        this.precio = precio;
+        this.stock = stock;
+    }
 }

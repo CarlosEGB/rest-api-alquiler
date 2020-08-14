@@ -1,17 +1,16 @@
 package com.alquiler.apirest.entity;
 
 
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.Getter;
+import lombok.Setter;
 import lombok.ToString;
 
 import javax.persistence.*;
-import java.util.List;
+import java.util.HashSet;
+import java.util.Set;
 
-@Data
-@AllArgsConstructor
-@NoArgsConstructor
+@Getter
+@Setter
 @ToString
 @Entity
 @Table(name = "colaborador")
@@ -28,5 +27,12 @@ public class Colaborador {
     @ManyToMany(fetch = FetchType.LAZY,
             cascade = CascadeType.ALL,
             mappedBy = "colaboradores")
-    private List<Juego> juegos;
+    private Set<Juego> juegos = new HashSet<>();
+
+    public Colaborador() {
+    }
+
+    public Colaborador(String nombre) {
+        this.nombre = nombre;
+    }
 }
