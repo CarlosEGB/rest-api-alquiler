@@ -18,4 +18,9 @@ public class JuegoController {
     public Juego postJuego(@RequestBody Juego bodyJuego) {
         return servicioJuego.guardarJuego(bodyJuego);
     }
+
+    @GetMapping("/juego")
+    public List<Juego> getAllJuegos() {
+        return servicioJuego.getJuegos();
+    }
 }

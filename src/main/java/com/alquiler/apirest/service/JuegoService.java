@@ -61,4 +61,8 @@ public class JuegoService {
 
         return juegoRepo.save(saveJuego);
     }
+
+    public List<Juego> getJuegos() {
+        return juegoRepo.findAll();
+    }
 }
