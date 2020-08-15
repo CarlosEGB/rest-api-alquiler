@@ -21,6 +21,11 @@ public class JuegoController {
         return servicioJuego.guardarJuego(bodyJuego);
     }
 
+    @GetMapping("/juego/{id}")
+    public Juego getJuego(@PathVariable(value = "id") int idJuego) {
+        return servicioJuego.getJuego(idJuego);
+    }
+
     @GetMapping("/juego")
     public List<Juego> getAllJuegos() {
         return servicioJuego.getJuegos();
