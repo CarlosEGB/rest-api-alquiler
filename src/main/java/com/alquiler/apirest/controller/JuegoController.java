@@ -38,4 +38,9 @@ public class JuegoController {
         }
         return new ResponseEntity<>(idJuego, HttpStatus.OK);
     }
+
+    @PutMapping("/juego")
+    public Juego putJuego(@RequestBody Juego juego){
+        return servicioJuego.putJuego(juego);
+    }
 }

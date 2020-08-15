@@ -62,7 +62,7 @@ public class JuegoService {
         return juegoRepo.save(saveJuego);
     }
 
-    public Juego getJuego(int idJuego){
+    public Juego getJuego(int idJuego) {
         return juegoRepo.findById(idJuego).get();
     }
 
@@ -73,5 +73,9 @@ public class JuegoService {
     public Boolean deleteJuegoById(int idJUego) {
         juegoRepo.deleteById(idJUego);
         return juegoRepo.existsById(idJUego);
+    }
+
+    public Juego putJuego(Juego juego) {
+        return juegoRepo.save(juego);
     }
 }
