@@ -23,9 +23,8 @@ public class Plataforma {
     @Column(length = 50)
     private String nombre;
 
-    @ToString.Exclude
-    @ManyToMany(targetEntity = Juego.class, fetch = FetchType.LAZY,
-            cascade = CascadeType.ALL,
+    @ManyToMany(fetch = FetchType.LAZY,
+            cascade = CascadeType.PERSIST,
             mappedBy = "plataformas")
     private Set<Juego> juegos = new HashSet<>();
 

@@ -65,4 +65,9 @@ public class JuegoService {
     public List<Juego> getJuegos() {
         return juegoRepo.findAll();
     }
+
+    public Boolean deleteJuegoById(int idJUego) {
+        juegoRepo.deleteById(idJUego);
+        return juegoRepo.existsById(idJUego);
+    }
 }

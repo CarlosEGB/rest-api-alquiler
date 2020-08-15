@@ -45,7 +45,7 @@ public class Juego {
     private Set<AlquilerJuego> alquilerJuegos = new HashSet<>();
 
     @ManyToMany(fetch = FetchType.LAZY,
-            cascade = CascadeType.ALL)
+            cascade = CascadeType.PERSIST)
     @JoinTable(name = "colaborador_juego",
             joinColumns = {@JoinColumn(name = "id_juego",
                     foreignKey = @ForeignKey(name = "FK_colabora_juego_juego"),
@@ -57,7 +57,7 @@ public class Juego {
     private Set<Colaborador> colaboradores = new HashSet<>();
 
     @ManyToMany(fetch = FetchType.LAZY,
-            cascade = CascadeType.ALL)
+            cascade = CascadeType.PERSIST)
     @JoinTable(name = "protagonista_juego",
             joinColumns = {@JoinColumn(name = "id_juego",
                     foreignKey = @ForeignKey(name = "FK_protago_juego_juego"),
@@ -68,7 +68,7 @@ public class Juego {
     @JsonIgnoreProperties("juegos")
     private Set<Protagonista> protagonistas = new HashSet<>();
 
-    @ManyToMany(targetEntity = Plataforma.class, fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.PERSIST)
     @JoinTable(name = "plataforma_juego",
             joinColumns = {@JoinColumn(name = "id_juego",
                     foreignKey = @ForeignKey(name = "FK_platf_juego_juego"),

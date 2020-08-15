@@ -24,7 +24,7 @@ public class Protagonista {
     private String nombre;
 
     @ManyToMany(fetch = FetchType.LAZY,
-            cascade = CascadeType.ALL,
+            cascade = CascadeType.PERSIST,
             mappedBy = "protagonistas")
     private Set<Juego> juegos = new HashSet<>();
 

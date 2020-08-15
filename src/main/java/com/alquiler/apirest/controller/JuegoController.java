@@ -3,6 +3,8 @@ package com.alquiler.apirest.controller;
 import com.alquiler.apirest.entity.Juego;
 import com.alquiler.apirest.service.JuegoService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -22,5 +24,13 @@ public class JuegoController {
     @GetMapping("/juego")
     public List<Juego> getAllJuegos() {
         return servicioJuego.getJuegos();
+    }
+
+    @DeleteMapping("/juego/{id}")
+    public ResponseEntity<Integer> deleJuego(@PathVariable(value = "id") int idJuego) {
+        if (servicioJuego.deleteJuegoById(idJuego)) {
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
+        return new ResponseEntity<>(idJuego, HttpStatus.OK);
     }
 }
