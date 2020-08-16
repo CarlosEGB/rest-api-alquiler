@@ -40,7 +40,7 @@ public class JuegoController {
     }
 
     @PutMapping("/juego")
-    public Juego putJuego(@RequestBody Juego juego){
+    public Juego putJuego(@RequestBody Juego juego) {
         return servicioJuego.putJuego(juego);
     }
 }
