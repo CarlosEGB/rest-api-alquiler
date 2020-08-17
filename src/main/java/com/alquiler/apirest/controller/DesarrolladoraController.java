@@ -3,6 +3,8 @@ package com.alquiler.apirest.controller;
 import com.alquiler.apirest.entity.Desarrolladora;
 import com.alquiler.apirest.service.DesarrolladoraService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -27,5 +29,13 @@ public class DesarrolladoraController {
     @GetMapping("/desarrolladora")
     public List<Desarrolladora> getAllDesarrolladoras() {
         return desarrolladoraService.getAllDesarrolladoras();
+    }
+
+    @DeleteMapping("/desarrolladora/{id}")
+    public ResponseEntity<Integer> deleteDesarrolladora(@PathVariable(name = "id") int idDesarrolladora) {
+        if (!desarrolladoraService.deleteDesarrolladora(idDesarrolladora)) {
+            return new ResponseEntity<>(idDesarrolladora, HttpStatus.OK);
+        }
+        return new ResponseEntity<>(HttpStatus.NOT_FOUND);
     }
 }

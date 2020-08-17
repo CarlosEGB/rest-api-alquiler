@@ -24,4 +24,9 @@ public class DesarrolladoraService {
     public List<Desarrolladora> getAllDesarrolladoras() {
         return desarrolladoraRepo.findAll();
     }
+
+    public boolean deleteDesarrolladora(int idDesarrolladora) {
+        desarrolladoraRepo.deleteById(idDesarrolladora);
+        return desarrolladoraRepo.existsById(idDesarrolladora);
+    }
 }
