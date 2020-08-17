@@ -1,10 +1,12 @@
 package com.alquiler.apirest.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
 
 import javax.persistence.*;
+import java.util.ArrayList;
 import java.util.List;
 
 @Getter
@@ -22,13 +24,9 @@ public class Desarrolladora {
     @Column(length = 50)
     private String nombre;
 
-    @OneToMany(targetEntity = Colaborador.class,
-            cascade = CascadeType.ALL)
-    @JoinColumn(name = "id_desarrolladora",
-            referencedColumnName = "id_desarrolladora",
-            foreignKey = @ForeignKey(name = "FK_colaborador_desarrolladora"),
-            nullable = false)
-    private List<Colaborador> colaboradores;
+    @OneToMany(mappedBy = "desarrolladora")
+    @JsonIgnore
+    private List<Colaborador> colaboradores = new ArrayList<>();
 
     public Desarrolladora() {
     }

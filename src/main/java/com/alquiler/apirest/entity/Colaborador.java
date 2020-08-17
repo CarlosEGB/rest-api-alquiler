@@ -29,6 +29,13 @@ public class Colaborador {
             mappedBy = "colaboradores")
     private Set<Juego> juegos = new HashSet<>();
 
+    @ManyToOne(fetch = FetchType.LAZY,
+            cascade = CascadeType.PERSIST)
+    @JoinColumn(name = "id_desarrolladora",
+            foreignKey = @ForeignKey(name = "FK_colaborador_desarrolladora"),
+            nullable = false)
+    private Desarrolladora desarrolladora;
+
     public Colaborador() {
     }
 
