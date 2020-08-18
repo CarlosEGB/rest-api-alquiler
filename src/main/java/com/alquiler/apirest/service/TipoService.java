@@ -24,4 +24,9 @@ public class TipoService {
     public Tipo getTipo(int idTipo) {
         return tipoRepo.findById(idTipo).get();
     }
+
+    public boolean deleteTipo(int idTipo) {
+        tipoRepo.deleteById(idTipo);
+        return tipoRepo.existsById(idTipo);
+    }
 }
