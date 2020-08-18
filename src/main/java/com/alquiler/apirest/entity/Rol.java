@@ -1,5 +1,6 @@
 package com.alquiler.apirest.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -29,5 +30,6 @@ public class Rol {
     @JoinColumn(name = "id_rol",
             referencedColumnName = "id_rol",
             foreignKey = @ForeignKey(name = "FK_persona_rol"))
+    @JsonIgnore
     private List<Persona> personas;
 }
