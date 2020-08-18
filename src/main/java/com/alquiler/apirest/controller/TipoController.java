@@ -38,4 +38,9 @@ public class TipoController {
         }
         return new ResponseEntity<>(idTipo, HttpStatus.OK);
     }
+
+    @PutMapping("/tipo")
+    public Tipo putTipo(@RequestBody Tipo tipo) {
+        return tipoService.putTipo(tipo);
+    }
 }

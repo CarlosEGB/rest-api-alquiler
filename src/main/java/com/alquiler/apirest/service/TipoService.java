@@ -29,4 +29,8 @@ public class TipoService {
         tipoRepo.deleteById(idTipo);
         return tipoRepo.existsById(idTipo);
     }
+
+    public Tipo putTipo(Tipo tipo) {
+        return tipoRepo.save(tipo);
+    }
 }
