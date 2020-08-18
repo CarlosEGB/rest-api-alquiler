@@ -38,4 +38,9 @@ public class DesarrolladoraController {
         }
         return new ResponseEntity<>(HttpStatus.NOT_FOUND);
     }
+
+    @PutMapping("/desarrolladora")
+    public Desarrolladora putDesarrolladora(@RequestBody Desarrolladora desarrolladora){
+        return desarrolladoraService.putDesarrolladora(desarrolladora);
+    }
 }

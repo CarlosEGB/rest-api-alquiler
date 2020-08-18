@@ -29,4 +29,8 @@ public class DesarrolladoraService {
         desarrolladoraRepo.deleteById(idDesarrolladora);
         return desarrolladoraRepo.existsById(idDesarrolladora);
     }
+
+    public Desarrolladora putDesarrolladora(Desarrolladora desarrolladora) {
+        return desarrolladoraRepo.save(desarrolladora);
+    }
 }
