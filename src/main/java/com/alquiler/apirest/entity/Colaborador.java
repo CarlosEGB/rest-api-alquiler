@@ -36,6 +36,13 @@ public class Colaborador {
             nullable = false)
     private Desarrolladora desarrolladora;
 
+    @ManyToOne(fetch = FetchType.LAZY,
+            cascade = CascadeType.PERSIST)
+    @JoinColumn(name = "id_tipo",
+            foreignKey = @ForeignKey(name = "FK_colaborador_tipo"),
+            nullable = false)
+    private Tipo tipo;
+
     public Colaborador() {
     }
 
