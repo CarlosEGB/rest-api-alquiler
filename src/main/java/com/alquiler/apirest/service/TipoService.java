@@ -5,6 +5,8 @@ import com.alquiler.apirest.repository.ITipo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class TipoService {
 
@@ -13,5 +15,13 @@ public class TipoService {
 
     public Tipo postTipo(Tipo tipo) {
         return tipoRepo.save(tipo);
+    }
+
+    public List<Tipo> getAllTipo() {
+        return tipoRepo.findAll();
+    }
+
+    public Tipo getTipo(int idTipo) {
+        return tipoRepo.findById(idTipo).get();
     }
 }
