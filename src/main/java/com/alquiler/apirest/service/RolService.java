@@ -5,6 +5,8 @@ import com.alquiler.apirest.repository.IRol;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class RolService {
 
@@ -13,5 +15,13 @@ public class RolService {
 
     public Rol postRol(Rol rol) {
         return rolRepo.save(rol);
+    }
+
+    public List<Rol> getAllRoles() {
+        return rolRepo.findAll();
+    }
+
+    public Rol getRol(int idRol) {
+        return rolRepo.findById(idRol).get();
     }
 }
