@@ -3,6 +3,8 @@ package com.alquiler.apirest.controller;
 import com.alquiler.apirest.entity.Persona;
 import com.alquiler.apirest.service.PersonaService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -27,5 +29,13 @@ public class PersonaController {
     @GetMapping("/persona/{id}")
     public Persona getPersona(@PathVariable(name = "id") int idPersona) {
         return personaService.getPersona(idPersona);
+    }
+
+    @DeleteMapping("/persona/{id}")
+    public ResponseEntity<Integer> deletePersona(@PathVariable(name = "id") int idPersona) {
+        if (personaService.deletePersona(idPersona)) {
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
+        return new ResponseEntity<>(idPersona, HttpStatus.OK);
     }
 }

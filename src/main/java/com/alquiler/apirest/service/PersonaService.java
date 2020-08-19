@@ -24,4 +24,9 @@ public class PersonaService {
     public Persona getPersona(int idPersona) {
         return personaRepo.findById(idPersona).get();
     }
+
+    public boolean deletePersona(int idPersona) {
+        personaRepo.deleteById(idPersona);
+        return personaRepo.existsById(idPersona);
+    }
 }
