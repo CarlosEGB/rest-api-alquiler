@@ -1,5 +1,6 @@
 package com.alquiler.apirest.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -40,5 +41,6 @@ public class Persona {
             referencedColumnName = "id_persona",
             foreignKey = @ForeignKey(name = "FK_alquiler_persona"),
             nullable = false)
+    @JsonIgnore
     private List<Alquiler> alquileres;
 }
