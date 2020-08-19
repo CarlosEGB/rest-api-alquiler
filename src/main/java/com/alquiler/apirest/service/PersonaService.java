@@ -5,6 +5,8 @@ import com.alquiler.apirest.repository.IPersona;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class PersonaService {
 
@@ -12,6 +14,14 @@ public class PersonaService {
     private IPersona personaRepo;
 
     public Persona postService(Persona persona) {
-     return personaRepo.save(persona);
+        return personaRepo.save(persona);
+    }
+
+    public List<Persona> getAllPersonas() {
+        return personaRepo.findAll();
+    }
+
+    public Persona getPersona(int idPersona) {
+        return personaRepo.findById(idPersona).get();
     }
 }
