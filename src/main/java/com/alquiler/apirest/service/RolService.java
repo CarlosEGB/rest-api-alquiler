@@ -24,4 +24,9 @@ public class RolService {
     public Rol getRol(int idRol) {
         return rolRepo.findById(idRol).get();
     }
+
+    public boolean deleteRol(int idRol) {
+        rolRepo.deleteById(idRol);
+        return rolRepo.existsById(idRol);
+    }
 }
