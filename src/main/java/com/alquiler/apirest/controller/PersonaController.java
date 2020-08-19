@@ -38,4 +38,9 @@ public class PersonaController {
         }
         return new ResponseEntity<>(idPersona, HttpStatus.OK);
     }
+
+    @PutMapping("/persona")
+    public Persona putPersona(@RequestBody Persona persona){
+        return personaService.putPersona(persona);
+    }
 }

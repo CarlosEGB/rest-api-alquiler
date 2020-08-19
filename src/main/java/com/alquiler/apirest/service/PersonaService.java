@@ -29,4 +29,8 @@ public class PersonaService {
         personaRepo.deleteById(idPersona);
         return personaRepo.existsById(idPersona);
     }
+
+    public Persona putPersona(Persona persona) {
+        return personaRepo.save(persona);
+    }
 }
