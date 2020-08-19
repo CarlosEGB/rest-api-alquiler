@@ -29,4 +29,8 @@ public class RolService {
         rolRepo.deleteById(idRol);
         return rolRepo.existsById(idRol);
     }
+
+    public Rol putRol(Rol rol) {
+        return rolRepo.save(rol);
+    }
 }

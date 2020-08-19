@@ -38,4 +38,9 @@ public class RolController {
         }
         return new ResponseEntity<>(idRol, HttpStatus.OK);
     }
+
+    @PutMapping("/rol")
+    public Rol putRol(@RequestBody Rol rol) {
+        return rolService.putRol(rol);
+    }
 }
