@@ -40,7 +40,7 @@ public class PersonaController {
     }
 
     @PutMapping("/persona")
-    public Persona putPersona(@RequestBody Persona persona){
+    public Persona putPersona(@RequestBody Persona persona) {
         return personaService.putPersona(persona);
     }
 }

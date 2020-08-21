@@ -1,17 +1,16 @@
 package com.alquiler.apirest.entity;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.Getter;
+import lombok.Setter;
 import lombok.ToString;
 
 import javax.persistence.*;
+import java.util.ArrayList;
 import java.util.List;
 
-@Data
-@AllArgsConstructor
-@NoArgsConstructor
+@Getter
+@Setter
 @ToString
 @Entity
 @Table(name = "rol")
@@ -25,11 +24,14 @@ public class Rol {
     @Column(name = "nombre", length = 50)
     private String nombre;
 
-    @OneToMany(targetEntity = Persona.class,
-            cascade = CascadeType.ALL)
-    @JoinColumn(name = "id_rol",
-            referencedColumnName = "id_rol",
-            foreignKey = @ForeignKey(name = "FK_persona_rol"))
+    @OneToMany(mappedBy = "rol")
     @JsonIgnore
-    private List<Persona> personas;
+    private List<Persona> personas = new ArrayList<>();
+
+    public Rol() {
+    }
+
+    public Rol(String nombre) {
+        this.nombre = nombre;
+    }
 }

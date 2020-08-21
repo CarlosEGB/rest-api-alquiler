@@ -40,7 +40,7 @@ public class DesarrolladoraController {
     }
 
     @PutMapping("/desarrolladora")
-    public Desarrolladora putDesarrolladora(@RequestBody Desarrolladora desarrolladora){
+    public Desarrolladora putDesarrolladora(@RequestBody Desarrolladora desarrolladora) {
         return desarrolladoraService.putDesarrolladora(desarrolladora);
     }
 }

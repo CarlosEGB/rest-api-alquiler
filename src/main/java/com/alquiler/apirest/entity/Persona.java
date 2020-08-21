@@ -1,18 +1,17 @@
 package com.alquiler.apirest.entity;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.Getter;
+import lombok.Setter;
 import lombok.ToString;
 
 import javax.persistence.*;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
-@Data
-@AllArgsConstructor
-@NoArgsConstructor
+@Getter
+@Setter
 @ToString
 @Entity
 @Table(name = "persona", uniqueConstraints = @UniqueConstraint(name = "UK_dni", columnNames = {"dni"}))
@@ -42,5 +41,22 @@ public class Persona {
             foreignKey = @ForeignKey(name = "FK_alquiler_persona"),
             nullable = false)
     @JsonIgnore
-    private List<Alquiler> alquileres;
+    private List<Alquiler> alquileres = new ArrayList<>();
+
+    @ManyToOne(fetch = FetchType.EAGER,
+            cascade = CascadeType.PERSIST)
+    @JoinColumn(name = "id_rol",
+            foreignKey = @ForeignKey(name = "FK_persona_rol"),
+            nullable = false)
+    private Rol rol;
+
+    public Persona() {
+    }
+
+    public Persona(int dni, String nombre, Date nacimiento, int telefono) {
+        this.dni = dni;
+        this.nombre = nombre;
+        this.nacimiento = nacimiento;
+        this.telefono = telefono;
+    }
 }
