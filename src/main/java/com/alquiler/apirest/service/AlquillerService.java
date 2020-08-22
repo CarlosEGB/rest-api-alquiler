@@ -51,4 +51,12 @@ public class AlquillerService {
 
         return alquilerRepo.save(saveAlquiler);
     }
+
+    public List<Alquiler> getAllAlquiler() {
+        return alquilerRepo.findAll();
+    }
+
+    public Alquiler getAlquiler(int idAlquiler) {
+        return alquilerRepo.findById(idAlquiler).get();
+    }
 }
