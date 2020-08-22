@@ -1,17 +1,17 @@
 package com.alquiler.apirest.entity;
 
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import com.fasterxml.jackson.annotation.JsonFormat;
+import lombok.Getter;
+import lombok.Setter;
 import lombok.ToString;
 
 import javax.persistence.*;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
-@Data
-@AllArgsConstructor
-@NoArgsConstructor
+@Getter
+@Setter
 @ToString
 @Entity
 @Table(name = "alquiler")
@@ -25,15 +25,26 @@ public class Alquiler {
     @Column(name = "monto_total")
     private int montoTotal;
 
+    @JsonFormat(pattern = "yyy-MM-dd", shape = JsonFormat.Shape.STRING)
     @Temporal(TemporalType.DATE)
     @Column(name = "fecha_incial")
     private Date fechaInicial;
 
-    @OneToMany(targetEntity = AlquilerJuego.class,
-            cascade = CascadeType.ALL)
-    @JoinColumn(name = "id_alquiler",
-            referencedColumnName = "id_alquiler",
-            foreignKey = @ForeignKey(name = "FK_alqui_juego_alqui"),
+    @OneToMany(mappedBy = "alquiler")
+    private List<AlquilerJuego> alquilerJuegos = new ArrayList<>();
+
+    @ManyToOne(fetch = FetchType.EAGER,
+            cascade = CascadeType.PERSIST)
+    @JoinColumn(name = "id_persona",
+            foreignKey = @ForeignKey(name = "FK_alquiler_persona"),
             nullable = false)
-    private List<AlquilerJuego> alquilerJuegos;
+    private Persona persona;
+
+    public Alquiler() {
+    }
+
+    public Alquiler(int montoTotal, Date fechaInicial) {
+        this.montoTotal = montoTotal;
+        this.fechaInicial = fechaInicial;
+    }
 }

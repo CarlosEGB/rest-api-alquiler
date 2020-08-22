@@ -34,12 +34,7 @@ public class Persona {
     @Column(nullable = true)
     private int telefono;
 
-    @OneToMany(targetEntity = Alquiler.class,
-            cascade = CascadeType.ALL)
-    @JoinColumn(name = "id_persona",
-            referencedColumnName = "id_persona",
-            foreignKey = @ForeignKey(name = "FK_alquiler_persona"),
-            nullable = false)
+    @OneToMany(mappedBy = "persona")
     @JsonIgnore
     private List<Alquiler> alquileres = new ArrayList<>();
 

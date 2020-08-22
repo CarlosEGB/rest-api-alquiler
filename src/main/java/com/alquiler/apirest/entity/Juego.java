@@ -1,15 +1,14 @@
 package com.alquiler.apirest.entity;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
 
 import javax.persistence.*;
-import java.util.Date;
-import java.util.HashSet;
-import java.util.Set;
+import java.util.*;
 
 @Getter
 @Setter
@@ -36,13 +35,9 @@ public class Juego {
     @Column(nullable = true)
     private int stock;
 
-    @OneToMany(targetEntity = AlquilerJuego.class,
-            cascade = CascadeType.ALL)
-    @JoinColumn(name = "id_juego",
-            referencedColumnName = "id_juego",
-            foreignKey = @ForeignKey(name = "FK_alqui_juego_juego"),
-            nullable = false)
-    private Set<AlquilerJuego> alquilerJuegos = new HashSet<>();
+    @OneToMany(mappedBy = "juego")
+    @JsonIgnore
+    private List<AlquilerJuego> alquilerJuegos = new ArrayList<>();
 
     @ManyToMany(fetch = FetchType.LAZY,
             cascade = CascadeType.PERSIST)
