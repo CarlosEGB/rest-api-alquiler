@@ -59,4 +59,9 @@ public class AlquillerService {
     public Alquiler getAlquiler(int idAlquiler) {
         return alquilerRepo.findById(idAlquiler).get();
     }
+
+    public Boolean deleteAlquiler(int idAlquiler) {
+        alquilerRepo.deleteById(idAlquiler);
+        return alquilerRepo.existsById(idAlquiler);
+    }
 }
