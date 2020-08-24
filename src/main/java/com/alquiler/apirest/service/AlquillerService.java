@@ -46,9 +46,7 @@ public class AlquillerService {
             alquilerJuego.setAlquiler(responseAlquiler);
             alquilerJuegoList.add(alquilerJuegoRepo.save(alquilerJuego));
         }
-
         saveAlquiler.getAlquilerJuegos().addAll(alquilerJuegoList);
-
         return alquilerRepo.save(saveAlquiler);
     }
 
@@ -63,5 +61,9 @@ public class AlquillerService {
     public Boolean deleteAlquiler(int idAlquiler) {
         alquilerRepo.deleteById(idAlquiler);
         return alquilerRepo.existsById(idAlquiler);
+    }
+
+    public Alquiler putAlquiler(Alquiler alquiler) {
+        return alquilerRepo.save(alquiler);
     }
 }

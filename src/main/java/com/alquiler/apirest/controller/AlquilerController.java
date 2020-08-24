@@ -38,4 +38,11 @@ public class AlquilerController {
         }
         return new ResponseEntity<>(idAlquiler, HttpStatus.OK);
     }
+
+    @PutMapping("/alquiler")
+    public Alquiler putAlquiler(@RequestBody Alquiler alquiler) {
+
+
+        return alquilerService.putAlquiler(alquiler);
+    }
 }
