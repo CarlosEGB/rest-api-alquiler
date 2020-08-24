@@ -41,8 +41,6 @@ public class AlquilerController {
 
     @PutMapping("/alquiler")
     public Alquiler putAlquiler(@RequestBody Alquiler alquiler) {
-
-
         return alquilerService.putAlquiler(alquiler);
     }
 }

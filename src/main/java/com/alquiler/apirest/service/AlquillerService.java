@@ -64,6 +64,22 @@ public class AlquillerService {
     }
 
     public Alquiler putAlquiler(Alquiler alquiler) {
-        return alquilerRepo.save(alquiler);
+        Alquiler saveAlquiler = new Alquiler();
+        saveAlquiler.setIdAlquiler(alquiler.getIdAlquiler());
+        saveAlquiler.setFechaInicial(alquiler.getFechaInicial());
+        saveAlquiler.setMontoTotal(alquiler.getMontoTotal());
+
+        Persona persona = personaRepo.findById(alquiler.getPersona().getIdPersona()).get();
+        saveAlquiler.setPersona(persona);
+
+        List<AlquilerJuego> alquilerJuegoList = new ArrayList<>();
+
+        for (AlquilerJuego alquilerJuego : alquiler.getAlquilerJuegos()) {
+            alquilerJuego.setJuego(juegoRepo.findById(alquilerJuego.getJuego().getIdJuego()).get());
+            alquilerJuego.setAlquiler(saveAlquiler);
+            alquilerJuegoList.add(alquilerJuegoRepo.save(alquilerJuego));
+        }
+        saveAlquiler.getAlquilerJuegos().addAll(alquilerJuegoList);
+        return alquilerRepo.save(saveAlquiler);
     }
 }
