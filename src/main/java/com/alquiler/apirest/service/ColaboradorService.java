@@ -24,6 +24,7 @@ public class ColaboradorService {
     public Colaborador postColaborador(Colaborador colaborador) {
 
         Colaborador saveColaborador = new Colaborador();
+
         saveColaborador.setNombre(colaborador.getNombre());
         saveColaborador.setDesarrolladora(desarrolladoraRepo.findById(colaborador.getDesarrolladora().getIdDesarrolladora()).get());
         saveColaborador.setTipo(tipoRepo.findById(colaborador.getTipo().getIdTipo()).get());
@@ -42,5 +43,17 @@ public class ColaboradorService {
     public boolean deleteColaborador(int idColaborador) {
         colaboradorRepo.deleteById(idColaborador);
         return colaboradorRepo.existsById(idColaborador);
+    }
+
+    public Colaborador putColaborador(Colaborador colaborador) {
+
+        Colaborador saveColaborador = new Colaborador();
+
+        saveColaborador.setIdColaborador(colaborador.getIdColaborador());
+        saveColaborador.setNombre(colaborador.getNombre());
+        saveColaborador.setDesarrolladora(desarrolladoraRepo.findById(colaborador.getDesarrolladora().getIdDesarrolladora()).get());
+        saveColaborador.setTipo(tipoRepo.findById(colaborador.getTipo().getIdTipo()).get());
+
+        return colaboradorRepo.save(saveColaborador);
     }
 }

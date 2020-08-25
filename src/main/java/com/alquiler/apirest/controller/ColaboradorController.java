@@ -38,4 +38,9 @@ public class ColaboradorController {
         }
         return new ResponseEntity<>(idColaborador, HttpStatus.OK);
     }
+
+    @PutMapping("/colaborador")
+    public Colaborador putColaborador(@RequestBody Colaborador colaborador) {
+        return colaboradorService.putColaborador(colaborador);
+    }
 }
