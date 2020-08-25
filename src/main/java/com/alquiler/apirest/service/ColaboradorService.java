@@ -38,4 +38,9 @@ public class ColaboradorService {
     public Colaborador getColabarador(int idColaborador) {
         return colaboradorRepo.findById(idColaborador).get();
     }
+
+    public boolean deleteColaborador(int idColaborador) {
+        colaboradorRepo.deleteById(idColaborador);
+        return colaboradorRepo.existsById(idColaborador);
+    }
 }
