@@ -7,6 +7,8 @@ import com.alquiler.apirest.repository.ITipo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class ColaboradorService {
 
@@ -27,5 +29,13 @@ public class ColaboradorService {
         saveColaborador.setTipo(tipoRepo.findById(colaborador.getTipo().getIdTipo()).get());
 
         return colaboradorRepo.save(saveColaborador);
+    }
+
+    public List<Colaborador> getAllColaboradores() {
+        return colaboradorRepo.findAll();
+    }
+
+    public Colaborador getColabarador(int idColaborador) {
+        return colaboradorRepo.findById(idColaborador).get();
     }
 }

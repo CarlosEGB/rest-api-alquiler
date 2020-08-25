@@ -31,14 +31,14 @@ public class Colaborador {
     @JsonIgnore
     private Set<Juego> juegos = new HashSet<>();
 
-    @ManyToOne(fetch = FetchType.LAZY,
+    @ManyToOne(fetch = FetchType.EAGER,
             cascade = CascadeType.PERSIST)
     @JoinColumn(name = "id_desarrolladora",
             foreignKey = @ForeignKey(name = "FK_colaborador_desarrolladora"),
             nullable = false)
     private Desarrolladora desarrolladora;
 
-    @ManyToOne(fetch = FetchType.LAZY,
+    @ManyToOne(fetch = FetchType.EAGER,
             cascade = CascadeType.PERSIST)
     @JoinColumn(name = "id_tipo",
             foreignKey = @ForeignKey(name = "FK_colaborador_tipo"),
