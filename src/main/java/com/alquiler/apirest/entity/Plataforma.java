@@ -1,5 +1,6 @@
 package com.alquiler.apirest.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
@@ -26,6 +27,7 @@ public class Plataforma {
     @ManyToMany(fetch = FetchType.LAZY,
             cascade = CascadeType.PERSIST,
             mappedBy = "plataformas")
+    @JsonIgnore
     private Set<Juego> juegos = new HashSet<>();
 
     public Plataforma() {
