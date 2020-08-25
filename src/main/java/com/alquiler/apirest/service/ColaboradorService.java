@@ -1,0 +1,31 @@
+package com.alquiler.apirest.service;
+
+import com.alquiler.apirest.entity.Colaborador;
+import com.alquiler.apirest.repository.IColaborador;
+import com.alquiler.apirest.repository.IDesarrolladora;
+import com.alquiler.apirest.repository.ITipo;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+@Service
+public class ColaboradorService {
+
+    @Autowired
+    private IColaborador colaboradorRepo;
+
+    @Autowired
+    private IDesarrolladora desarrolladoraRepo;
+
+    @Autowired
+    private ITipo tipoRepo;
+
+    public Colaborador postColaborador(Colaborador colaborador) {
+
+        Colaborador saveColaborador = new Colaborador();
+        saveColaborador.setNombre(colaborador.getNombre());
+        saveColaborador.setDesarrolladora(desarrolladoraRepo.findById(colaborador.getDesarrolladora().getIdDesarrolladora()).get());
+        saveColaborador.setTipo(tipoRepo.findById(colaborador.getTipo().getIdTipo()).get());
+
+        return colaboradorRepo.save(saveColaborador);
+    }
+}
