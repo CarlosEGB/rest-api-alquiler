@@ -10,7 +10,7 @@
 	</parent>
 	<groupId>com.alquiler</groupId>
 	<artifactId>api-rest</artifactId>
-	<version>1.5.0-SNAPSHOT</version>
+	<version>1.6.0-SNAPSHOT</version>
 	<name>Api Rest Alquiler</name>
 	<description>Demo project for Spring Boot</description>
 
