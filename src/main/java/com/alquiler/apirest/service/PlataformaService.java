@@ -24,4 +24,9 @@ public class PlataformaService {
     public Plataforma getPlataforma(int idPlataforma) {
         return plataformaRepo.findById(idPlataforma).get();
     }
+
+    public boolean deletePlataforma(int idPlataforma) {
+        plataformaRepo.deleteById(idPlataforma);
+        return plataformaRepo.existsById(idPlataforma);
+    }
 }
