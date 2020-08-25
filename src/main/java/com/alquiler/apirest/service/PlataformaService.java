@@ -29,4 +29,8 @@ public class PlataformaService {
         plataformaRepo.deleteById(idPlataforma);
         return plataformaRepo.existsById(idPlataforma);
     }
+
+    public Plataforma putPlataforma(Plataforma plataforma) {
+        return plataformaRepo.save(plataforma);
+    }
 }

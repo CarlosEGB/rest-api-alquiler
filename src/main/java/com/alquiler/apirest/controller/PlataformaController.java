@@ -38,4 +38,9 @@ public class PlataformaController {
         }
         return new ResponseEntity<>(idPlataforma, HttpStatus.OK);
     }
+
+    @PutMapping("/plataforma")
+    public Plataforma putPlataforma(@RequestBody Plataforma plataforma) {
+        return plataformaService.putPlataforma(plataforma);
+    }
 }
