@@ -5,6 +5,8 @@ import com.alquiler.apirest.repository.IPlataforma;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class PlataformaService {
 
@@ -13,5 +15,13 @@ public class PlataformaService {
 
     public Plataforma postPlataforma(Plataforma plataforma) {
         return plataformaRepo.save(plataforma);
+    }
+
+    public List<Plataforma> getAllPlataforma() {
+        return plataformaRepo.findAll();
+    }
+
+    public Plataforma getPlataforma(int idPlataforma) {
+        return plataformaRepo.findById(idPlataforma).get();
     }
 }
