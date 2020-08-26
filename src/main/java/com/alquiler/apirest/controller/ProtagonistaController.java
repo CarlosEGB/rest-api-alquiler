@@ -32,10 +32,15 @@ public class ProtagonistaController {
     }
 
     @DeleteMapping("/protagonista/{id}")
-    public ResponseEntity<Integer> deleteProtagonista(@PathVariable(name = "id") int idProtagonista) {
+    private ResponseEntity<Integer> deleteProtagonista(@PathVariable(name = "id") int idProtagonista) {
         if (protagonistaService.deleteProtagonista(idProtagonista)) {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
         return new ResponseEntity<>(idProtagonista, HttpStatus.OK);
+    }
+
+    @PutMapping("/protagonista")
+    private Protagonista putProtagonista(@RequestBody Protagonista protagonista) {
+        return protagonistaService.putProtagonista(protagonista);
     }
 }

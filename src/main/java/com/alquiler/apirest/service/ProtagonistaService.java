@@ -29,4 +29,8 @@ public class ProtagonistaService {
         protagonistaRepo.deleteById(idProtagonista);
         return protagonistaRepo.existsById(idProtagonista);
     }
+
+    public Protagonista putProtagonista(Protagonista protagonista) {
+        return protagonistaRepo.save(protagonista);
+    }
 }
