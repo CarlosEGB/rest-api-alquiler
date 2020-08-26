@@ -24,4 +24,9 @@ public class ProtagonistaService {
     public Protagonista getProtagonistas(int idProtagonista) {
         return protagonistaRepo.findById(idProtagonista).get();
     }
+
+    public boolean deleteProtagonista(int idProtagonista) {
+        protagonistaRepo.deleteById(idProtagonista);
+        return protagonistaRepo.existsById(idProtagonista);
+    }
 }
